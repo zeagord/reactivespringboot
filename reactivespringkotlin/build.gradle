@@ -12,6 +12,8 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+		classpath("io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE")
+
 	}
 }
 
@@ -20,7 +22,13 @@ apply plugin: 'kotlin-spring'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: "io.spring.dependency-management"
 
+dependencyManagement {
+	imports {
+		mavenBom 'org.springframework.cloud:spring-cloud-vault-dependencies:2.0.0.BUILD-SNAPSHOT'
+	}
+}
 group = 'com.bytesville.tutorial.reactivespringkotlin'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
@@ -35,6 +43,8 @@ repositories {
 	mavenCentral()
 	maven { url "https://repo.spring.io/snapshot" }
 	maven { url "https://repo.spring.io/milestone" }
+	maven { url "https://repo.spring.io/libs-snapshot" }
+
 }
 
 
@@ -43,6 +53,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-webflux')
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
 	compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+	compile('org.springframework.boot:spring-boot-starter-security-reactive')
+	compile('org.springframework.cloud:spring-cloud-starter-vault-config')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('io.projectreactor:reactor-test')
 }
