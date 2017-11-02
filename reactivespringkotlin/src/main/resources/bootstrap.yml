@@ -8,3 +8,7 @@ spring:
             scheme: http
             authentication: TOKEN
             token: 622eab55-368c-599a-0bce-324c5f59df03
+            mongodb:
+              enabled: true
+              role: readwrite
+              backend: mongodb

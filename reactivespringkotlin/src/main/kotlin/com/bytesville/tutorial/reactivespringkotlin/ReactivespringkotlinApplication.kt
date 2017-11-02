@@ -23,7 +23,10 @@ class ReactivespringkotlinApplication {
                 .thenMany(books)
                 .thenMany(bookRepository.findAll())
                 .subscribe { println(it) }
+
     }
+
+
 }
 
 fun main(args: Array<String>) {

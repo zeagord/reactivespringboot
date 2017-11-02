@@ -2,3 +2,11 @@ endpoints:
   default:
     web:
       enabled: true
+logging:
+  level:
+    org.springframework.cloud: debug
+
+spring:
+  data:
+    mongodb:
+      database: mytestdb
