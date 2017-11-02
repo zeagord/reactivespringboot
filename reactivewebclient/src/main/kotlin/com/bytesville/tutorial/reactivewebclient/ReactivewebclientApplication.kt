@@ -1,16 +1,28 @@
 package com.bytesville.tutorial.reactivewebclient
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
+import org.springframework.web.reactive.function.client.ExchangeFilterFunctions
 import org.springframework.web.reactive.function.client.WebClient
 import java.util.*
+import javax.annotation.PostConstruct
 
 @SpringBootApplication
 class ReactivewebclientApplication {
+
+    @Value("\${X-Service-Pass}")
+    val password:String?=null;
+
     @Bean
-    fun webClient(): WebClient = WebClient.create("http://localhost:8080/books").mutate().build()
+    @PostConstruct
+    fun webClient(): WebClient = WebClient
+            .create("http://localhost:8080/books")
+            .mutate()
+            .filter(ExchangeFilterFunctions.basicAuthentication("bytesville", password))
+            .build()
 
 
     @Bean

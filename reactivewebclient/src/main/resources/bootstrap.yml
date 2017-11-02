@@ -1,0 +1,10 @@
+spring:
+    application:
+        name: reactive-web-client
+    cloud:
+        vault:
+            host: localhost
+            port: 8200
+            scheme: http
+            authentication: TOKEN
+            token: 622eab55-368c-599a-0bce-324c5f59df03
