@@ -1,0 +1,14 @@
+info:
+  component: Zuul Server
+
+server:
+  port: 9100
+
+spring:
+  application:
+    name: Gateway
+  cloud:
+    gateway:
+      routes:
+        REACTIVE-SEC-DEMO:
+          path: /bookservice/**
